@@ -22,9 +22,22 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'tjkgtg+%h^wiaibsdq%(ok4a6s6+^g5z=3(xg^5#0&gxtdb1gh'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = True #os.getenv ...
 
 ALLOWED_HOSTS = []
+
+'''Required for running on my current environment (win 10)'''
+if DEBUG:
+    if os.name == 'nt':
+        import platform
+        OSGEO4W = r"C:\OSGeo4W"
+        assert os.path.isdir(OSGEO4W), "Directory does not exist: " + OSGEO4W
+        os.environ['OSGEO4W_ROOT'] = OSGEO4W
+        os.environ['GDAL_DATA'] = OSGEO4W + r"\share\gdal"
+        os.environ['PROJ_LIB'] = OSGEO4W + r"\share\proj"
+        os.environ['PATH'] = OSGEO4W + r"\bin;" + os.environ['PATH']
+
+    GDAL_LIBRARY_PATH = r'C:\\OSGeo4W\\bin\\gdal303'
 
 # Application definition
 
