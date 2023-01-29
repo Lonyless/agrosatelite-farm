@@ -32,7 +32,7 @@ class FarmCreateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Farm
-        fields = ['id', 'name', 'geometry', 'centroid', 'area', 'owner']
+        fields = ['id', 'name', 'geometry', 'centroid', 'area', 'owner', 'city']
         read_only_fields = ['id', 'centroid', 'area']
 
 

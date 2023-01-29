@@ -21,6 +21,9 @@ from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
 from rest_framework import permissions
 
+from farm_base.models.city import City
+from farm_base.models.state import State
+
 schema_view = get_schema_view(
     openapi.Info(
         title="Farm Project API",
@@ -41,7 +44,8 @@ urlpatterns = [
                              'farm_base'),
                             namespace='farm_base')),
 ]
-
+#estpk = State.objects.create(name="Estado")
+#City.objects.create(name="Cidade", state=estpk)
 if settings.DEBUG:
     urlpatterns += [
         path('', RedirectView.as_view(url="/api/v1")),
