@@ -1,6 +1,6 @@
 from django.contrib.gis.db import models
 from django.utils.translation import gettext as _
-
+from farm_base.models.city import City
 from farm_base.models.owner import Owner
 
 
@@ -26,6 +26,8 @@ class Farm(models.Model):
     is_active = models.BooleanField(verbose_name=_("Is Active"), default=True)
 
     owner = models.ForeignKey(Owner, models.DO_NOTHING, default=None)
+
+    city = models.ForeignKey(City, models.DO_NOTHING)
 
     def __str__(self):
         return str(self.name)
