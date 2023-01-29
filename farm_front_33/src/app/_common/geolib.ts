@@ -32,7 +32,7 @@ export function convertProjection(to: Projection, coords: number[]) {
     }
 }
 
-export function formatArea(area: number) {
+export function formatArea(area) {
     const [integer, dec] = (area / 100 / 100).toFixed(2).split('.')
     return separador(integer) + ',' + dec + 'ha'
 }

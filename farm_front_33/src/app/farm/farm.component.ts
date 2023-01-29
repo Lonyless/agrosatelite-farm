@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { DrawAddon } from '@common/draw';
 import GeoJSON from 'ol/format/GeoJSON';
-
 import { MapService } from '../map.service';
 import { BasemapComponent } from '../basemap/basemap.component';
 import { GeoJsonFeatureAddon } from '@common/feature';
 import { pointClickStyle, GeoJsonFeature } from '@common/geolib'
-import { Geometry } from 'ol/geom';
 
 @Component({
   selector: 'app-farm',
@@ -29,7 +27,7 @@ export class FarmComponent implements OnInit {
     this._map.includeAddon(new DrawAddon({
       identifier: 'geometry_map',
       drawType: type,
-      callback: (geometry: Geometry) => {
+      callback: geometry => {
           const geo = new GeoJSON().writeGeometryObject(geometry) as any
           this.handleNewGeometry(geo)
         }

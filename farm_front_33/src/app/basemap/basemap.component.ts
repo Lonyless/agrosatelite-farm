@@ -5,7 +5,7 @@ import _omit from 'lodash/omit'
 import _pick from 'lodash/pickBy'
 import _values from 'lodash/values'
 import { easeOut } from 'ol/easing.js'
-import { Layer } from 'ol/layer'
+import Layer from 'ol/layer'
 import Tile from 'ol/layer/Tile'
 import Map from 'ol/Map'
 import XYZ from 'ol/source/XYZ'
@@ -43,7 +43,7 @@ export class BasemapComponent {
     this._map = new Map({
       target: this.$mapContainer.nativeElement,
       layers: this.getInitialLayers(),
-      //loadTilesWhileAnimating: false,
+      loadTilesWhileAnimating: false,
       view: new View({
         center: DEFAULTS.center,
         resolution: DEFAULTS.resolution,
@@ -68,7 +68,7 @@ export class BasemapComponent {
   ) {
     const keep = force
       ? {}
-      : _pick(this.addons, (_v: any, key: string) => {
+      : _pick(this.addons, (_v, key) => {
           if (key.startsWith('root::')) return true
           if (key.startsWith('base_layer::')) return true
           return false
@@ -116,12 +116,12 @@ export class BasemapComponent {
     if (!this._map) {
       return
     }
-    const prevList = _values(prevAddons).filter((x: any) => x)
-    const currList = _values(currAddons).filter((x: any) => x)
-    const toRemove = _diff(prevList, currList).filter((x: any) => x)
-    const toAdd = _diff(currList, prevList).filter((x: any) => x)
+    const prevList = _values(prevAddons).filter((x) => x)
+    const currList = _values(currAddons).filter((x) => x)
+    const toRemove = _diff(prevList, currList).filter((x) => x)
+    const toAdd = _diff(currList, prevList).filter((x) => x)
     await Promise.all(
-      toRemove.map(async (a: any) => {
+      toRemove.map(async (a) => {
         await a!.waitRemout
         a!.unmount(this._map)
       })
@@ -146,7 +146,7 @@ export class BasemapComponent {
     return this._map
   }
 
-  fitToAddons(addonKeys: string[], fitOptions?: undefined) {
+  fitToAddons(addonKeys: string[], fitOptions?) {
     let baseExtent = null as any
     this.fitoptions.maxZoom = 15
     for (let x = 0; x < addonKeys.length; x++) {

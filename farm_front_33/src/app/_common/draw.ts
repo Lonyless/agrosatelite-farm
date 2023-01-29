@@ -1,5 +1,5 @@
 import { dashedInteractionStyle, formatArea } from '@common/geolib'
-import { circular as circularPolygon } from 'ol/geom/Polygon.js'
+import { circular as circularPolygon } from 'node_modules/ol/geom/Polygon.js'
 import GeometryType from 'ol/geom'
 import Geometry from 'ol/geom/Geometry'
 import Polygon from 'ol/geom/Polygon'
@@ -9,14 +9,11 @@ import Map from 'ol/Map'
 import Overlay from 'ol/Overlay'
 import VectorSource from 'ol/source/Vector'
 import { MapAddon } from './addon'
-import OverlayPositioning from 'ol/OverlayPositioning'
-import Interaction from 'ol/interaction/Interaction'
-import { StyleFunction } from 'ol/style/Style'
 
 export class DrawAddon extends MapAddon {
   source: VectorSource
   layer: VectorLayer
-  interaction: Interaction
+  interaction: ol.interaction.Interaction
   event: any
   overlay: Overlay
 
@@ -33,9 +30,9 @@ export class DrawAddon extends MapAddon {
   constructor(
     private input: {
       identifier: string
-      drawType: any
+      drawType: GeometryType
       callback: (geometry: Geometry) => any
-      styleFunction?: StyleFunction
+      styleFunction?: ol.StyleFunction
       geometries?: any[]
     }
   ) {
@@ -53,11 +50,11 @@ export class DrawAddon extends MapAddon {
     this.overlay = new Overlay({
       element: this.$tooltip,
       offset: [15, 0],
-      positioning: OverlayPositioning.CENTER_LEFT,
+      positioning: 'center-left',
     })
   }
   map: Map | undefined
-  override afterMount(map: Map) {
+  afterMount(map: Map) {
     this.map = map
     this.event = (evt: any) => {
       const sketch = evt.feature
@@ -78,7 +75,7 @@ export class DrawAddon extends MapAddon {
 
     this.interaction.on('drawstart', (evt: any) => {
       const sketch = evt.feature
-      sketch.getGeometry().on('change', (evt: { target: any }) => {
+      sketch.getGeometry().on('change', (evt) => {
         const geom = evt.target
         if (geom instanceof Polygon) {
           const polygon = geom
@@ -90,15 +87,15 @@ export class DrawAddon extends MapAddon {
     })
   }
 
-  override getInteractions() {
+  getInteractions() {
     return [this.interaction]
   }
 
-  override getLayers() {
+  getLayers() {
     return [this.layer]
   }
 
-  override getOverlays() {
+  getOverlays() {
     return [this.overlay]
   }
 }

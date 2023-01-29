@@ -1,62 +1,27 @@
-# Agrosatelite - Frontend
+# Agrosatelite
 
-## Requirements
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.3.
 
-- Node
-- npm
-- Angular 11
-- json-server
+## Development server
 
-## Run
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-Install dependencies
+## Code scaffolding
 
-```shell
-npm install
-```
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-Serve the project using the angular CLI
+## Build
 
-```shell
-ng serve
-```
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-or
+## Running unit tests
 
-```shell
-npm run ng serve
-```
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-Run mocked backend:
+## Running end-to-end tests
 
-```shell
-json-server src/assets/farm.json
-```
+Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
-## Fulfill the user stories bellow
+## Further help
 
-1. Implementar CRUD no serviço de fazenda (`service/farm.service.ts`) utilizando o back mockado (que é executado por padrão em `http://localhost:3000`).
-
-2. Na página inicial do sistema eu posso clicar sobre a opção 'Cadastrar' para cadastrar uma nova fazenda;
-
-   2.1 Ao clicar em 'Novo cadastro', devo ser redirecionado para uma nova rota com o componente que me permitirá cadastrar uma nova fazenda com os dados de nome da fazenda, área, centróide, geometria, e o id do dono.
-
-   2.2 Utilizar o serviço de fazenda para armazenar a fazenda no "back".
-
-3. Na página inicial do sistema eu posso ver o nome de todas as fazendas cadastradas (utilizar o list do serviço de fazenda).
-
-4. Ao clicar sobre o nome de uma fazenda devo ser redirecionado para a rota '/details' para ver todas as informações associadas a ela (nome, centróide e id do dono);
-
-   4.1. A rota /details deve receber como parâmetro o 'id' da fazenda;
-
-   4.2. Se um 'id' inválido for passado como parâmetro, o roteador deve me encaminhar para a página inicial do sistema.
-
-5. Na visualização dos detalhes da fazenda eu tenho a opção de editar e de excluir a fazenda atual;
-
-   5.1. Ao clicar em 'Editar', serei redirecionado para a página de cadastro de fazendas com todos os campos preenchidos com o da fazenda atual;
-
-   5.2. Ao finalizar a edição, a fazenda deverá ser atualizada com os novos valores;
-
-   5.3. Ao clicar em 'Excluir', a fazenda deverá ser removida e o roteador deve me encaminhar para a página inicial do sistema.
-
-6. (Opcional) Durante o cadastro de uma fazenda, eu posso desenhar polígonos que delimitam a área da fazenda. Use a opção 'Desenhar Círculo' que permite desenhar um círculo no mapa como base. Verifique os arquivos (farm.component.ts e draw.ts). A [documentação do openlayers](https://openlayers.org/en/latest/apidoc/) caso necessário.
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
