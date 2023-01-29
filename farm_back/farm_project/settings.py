@@ -22,12 +22,17 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'tjkgtg+%h^wiaibsdq%(ok4a6s6+^g5z=3(xg^5#0&gxtdb1gh'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True #os.getenv ...
+DEBUG = True  # os.getenv ...
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    
+]
 
-'''Required for running on my current environment (win 10)'''
+CORS_ORIGIN_ALLOW_ALL = True
+
+
 if DEBUG:
+    '''Required for running on (win 10)'''
     if os.name == 'nt':
         import platform
         OSGEO4W = r"C:\OSGeo4W"
@@ -54,10 +59,12 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_gis',
     'drf_yasg',
-    'farm_base'
+    'farm_base',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
