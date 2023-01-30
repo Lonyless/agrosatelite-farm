@@ -7,6 +7,8 @@ import { BasemapComponent } from '../basemap/basemap.component';
 import { GeoJsonFeatureAddon } from '@common/feature';
 import { pointClickStyle, GeoJsonFeature } from '@common/geolib'
 import { Geometry } from 'ol/geom';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-farm',
@@ -18,22 +20,22 @@ export class FarmComponent implements OnInit {
   private _map!: BasemapComponent
   private _geometries: GeoJsonFeature[] = []
 
-  constructor(private _mapService: MapService) { }
+  constructor(private _mapService: MapService, private router: Router) { }
 
   ngOnInit() {
     this._map = this._mapService.map
   }
 
   draw(type: 'Circle') {
-    if(!this._map) return
+    if (!this._map) return
     this._map.includeAddon(new DrawAddon({
       identifier: 'geometry_map',
       drawType: type,
       callback: (geometry: Geometry) => {
-          const geo = new GeoJSON().writeGeometryObject(geometry) as any
-          this.handleNewGeometry(geo)
-        }
-      }))
+        const geo = new GeoJSON().writeGeometryObject(geometry) as any
+        this.handleNewGeometry(geo)
+      }
+    }))
   }
 
   geometrySeed: number = 1
@@ -58,6 +60,6 @@ export class FarmComponent implements OnInit {
 
 
   ngOnDestroy() {
-    this._map.removeByPrefix('geometry')
+    //this._map.removeByPrefix('geometry')
   }
 }
