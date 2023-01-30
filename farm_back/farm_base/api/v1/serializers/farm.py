@@ -8,6 +8,8 @@ from farm_base.models import Farm
 
 
 class FarmListSerializer(serializers.ModelSerializer):
+    owner = OwnerDetailSerializer()
+
     def __init__(self, *args, **kwargs):
         super(FarmListSerializer, self).__init__(*args, **kwargs)
         request = kwargs['context']['request']
