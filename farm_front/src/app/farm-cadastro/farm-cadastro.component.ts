@@ -27,25 +27,32 @@ export class FarmCadastroComponent {
 
   saveLabel: string = ''
 
+  getSelectOptions() {
+    this._cityService.list().subscribe((data) => {
+      this.cities = data
+    })
+    this._ownerService.list().subscribe((data) => {
+      this.owners = data
+    })
+  }
+
   ngOnInit() {
     this.route.params.subscribe((data: Data) => {
       if (data['id'] != null) {
         this.saveLabel = 'Save'
+
+        this._farmService.read(data['id']).subscribe((data) => {
+          this.farm = data
+
+          this.getSelectOptions()
+
+        })
       } else {
         this.saveLabel = 'Create'
+        this.getSelectOptions()
       }
 
-      this._farmService.read(data['id']).subscribe((data) => {
-        this.farm = data
-        console.log(data)
 
-        this._cityService.list().subscribe((data) => {
-          this.cities = data
-        })
-        this._ownerService.list().subscribe((data) => {
-          this.owners = data
-        })
-      })
     })
   }
 
