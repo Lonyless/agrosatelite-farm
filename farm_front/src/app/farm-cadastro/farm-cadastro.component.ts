@@ -57,14 +57,13 @@ export class FarmCadastroComponent {
   }
 
   saveFarm(name?: string,
-    area?: string,
     owner_id?: string,
     city_id?: string,
   ) {
+
     this._farmService.save({
       id: this.farm.id,
       name: name!,
-      area: Number(area!),
       owner: Number(owner_id),
       city: Number(city_id!),
     }).subscribe((data) => {
