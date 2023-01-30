@@ -1,3 +1,4 @@
 node_modules/
 *.pyc
 farm_back/farm_back
+.vscode/launch.json
