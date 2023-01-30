@@ -1,1 +1,7 @@
-<app-farm></app-farm>
+<mat-toolbar color="primary">
+    <div style="width: 15px;"></div>
+    <h2 style="font-family: monospace" [routerLink]="''">Farm Project</h2>
+    <span style="flex: 1 1 auto;"></span>
+    <button mat-raised-button color="accent" [routerLink]="'cadastro'">Create new Farm</button>
+</mat-toolbar>
+<router-outlet></router-outlet>
