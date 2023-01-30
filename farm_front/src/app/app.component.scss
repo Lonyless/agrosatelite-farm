@@ -1,0 +1,69 @@
+@import "@angular/material/prebuilt-themes/deeppurple-amber.css";
+
+@import '@angular/material/theming';
+@include mat-core();
+
+$agro-primary: (
+  50: #e2f5f9,
+  100: #b6e6f0,
+  200: #89d5e7,
+  300: #61c5de,
+  400: #47b8da,
+  500: #32acd7,
+  600: #2a9fc9,
+  700: #1f8cb7,
+  800: #1d7ba4,
+  900: #125b83,
+  contrast: (50: $black-87-opacity,
+    100: $black-87-opacity,
+    200: $black-87-opacity,
+    300: $black-87-opacity,
+    400: $black-87-opacity,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: $black-87-opacity,
+    A200: $black-87-opacity,
+    A400: $black-87-opacity,
+    A700: white,
+  )
+);
+
+$agro-accent: (
+  50: #fff8e2,
+  100: #ffedb6,
+  200: #ffe188,
+  300: #ffd759,
+  400: #ffcc39,
+  500: #ffc428,
+  600: #ffb623,
+  700: #ffa321,
+  800: #ff931f,
+  900: #fe751c,
+  contrast: (50: $black-87-opacity,
+    100: $black-87-opacity,
+    200: $black-87-opacity,
+    300: $black-87-opacity,
+    400: $black-87-opacity,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: $black-87-opacity,
+    A200: $black-87-opacity,
+    A400: $black-87-opacity,
+    A700: white,
+  )
+);
+
+$primary: mat-palette($agro-primary, 700);
+//$accent: mat-palette($agro-accent, 800);
+$accent: mat-palette($mat-deep-purple, 500);
+$warn: mat-palette($mat-red, 600);
+
+$theme: mat-light-theme($primary, $accent, $warn);
+
+@include angular-material-theme($theme);
