@@ -1,0 +1,37 @@
+<div style="width: 50%; margin: auto;">
+    <mat-form-field appearance="outline" style="width: 100%; padding-top: 50px; height: 80px;">
+        <mat-label>Name</mat-label>
+        <input matInput class="text-align" [value]="farm.name??''" #name>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" style="width: 100%; padding-top: 10px; height: 80px;">
+        <mat-label>Area</mat-label>
+        <input matInput class="text-align" type="number" [value]="farm.area" #area>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" style="width: 100%; padding-top: 10px; height: 80px;">
+        <mat-label>Owner</mat-label>
+        <mat-select #owner [value]="farm.owner?.id" class="text-align">
+            <mat-option *ngFor="let owner of owners" [value]="owner.id">
+                {{ owner.name }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" style="width: 100%; padding-top: 10px; height: 80px;">
+        <mat-label>City</mat-label>
+        <mat-select #city [value]="farm.city" class="text-align">
+            <mat-option *ngFor="let city of cities" [value]="city.id">
+                {{ city.name }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+
+    <div style="align-items: stretch; flex-direction: row; flex: content;">
+        <button c mat-raised-button color="accent" style="float: right; "
+            (click)="saveFarm(name.value, area.value ,owner.value, city.value)">{{saveLabel}}</button>
+        <button mat-raised-button color="warn" style="float: right; margin-right: 2%;"  *ngIf="farm.id != null"
+            (click)="removeFarm()">Remove</button>
+    </div>
+</div>
