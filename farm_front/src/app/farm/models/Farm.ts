@@ -1,9 +1,18 @@
 import { Owner } from './Owner'
-export interface Farm {
-  name: string
-  geomtry: any
-  area: number
-  centroid: number[]
+import { Model } from './abstract_model'
+
+export interface Farm extends Model {
+  name?: string
+  geometry?: any
+  area?: number
+  centroid?: number[]
   creation_date?: Date
-  owner: Owner
+  owner?: Owner
+  city?: number
+}
+
+
+
+export interface FarmPut extends Omit<Farm, 'owner'> {
+  owner: number
 }
