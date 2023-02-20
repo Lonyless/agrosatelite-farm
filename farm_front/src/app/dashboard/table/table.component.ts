@@ -16,6 +16,4 @@ export class TableComponent {
 
   @Input()
   dataSource: Model[] = [];
-
-
 }
